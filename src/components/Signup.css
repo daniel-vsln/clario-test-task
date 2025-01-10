@@ -1,0 +1,66 @@
+.signup-form {
+  border: 1px solid white;
+  width: 400px;
+  margin: 50px auto;
+
+  h1 {
+    font-size: 40px;
+  }
+
+  p {
+    text-align: left;
+  }
+
+  .password-container,
+  .email-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    input {
+      padding: 10px;
+      border-radius: 10px;
+      height: 28px;
+      border: 1px solid var(--border-color-lighter);
+      outline: none;
+    }
+    input.error {
+      border: 1px solid var(--error-color);
+    }
+    input.valid {
+      border: 1px solid var(--success-color);
+    }
+
+    /* input:focus {
+      border-color: var(--border-color);
+    } */
+
+    .password-requirements {
+      .valid {
+        color: var(--success-color);
+      }
+      .error {
+        color: var(--error-color);
+      }
+    }
+  }
+
+  .password-container {
+    position: relative;
+  }
+
+  .password-container input {
+    padding-right: 40px;
+  }
+
+  .password-container .eye-icon {
+    display: block;
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 8px;
+  }
+}
