@@ -36,6 +36,9 @@ body {
 #root {
   flex-basis: 100%;
 }
+.main-container {
+  display: grid;
+}
 
 
 /*@media (min-width: 481px) and (max-width: 768px) { ... }

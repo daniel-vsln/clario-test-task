@@ -4,7 +4,7 @@ import { Signup } from './components'
 function App() {
 
   return (
-    <main>
+    <main className="main-container">
       <Signup />
     </main>
   )
