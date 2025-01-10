@@ -1,4 +1,10 @@
 import { useCallback, useState } from "react";
+import {
+  PropertyValidationRequirement,
+  PropertyValidator,
+  RequirementsValidator,
+  Validation,
+} from "../../../types";
 
 const EMAIL_REGEX =
   /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;
@@ -25,18 +31,6 @@ export const useEmailValidation = (): PropertyValidator => {
   };
 };
 
-export type PropertyValidationState = "valid" | "error" | "initial";
-
-export interface Validation {
-  message?: string;
-  state: PropertyValidationState;
-}
-
-export interface PropertyValidationRequirement {
-  pattern: RegExp;
-  message: string;
-}
-
 const PASSWORD_REQUIREMENTS: PropertyValidationRequirement[] = [
   {
     pattern: /^\S{8,}$/,
@@ -51,17 +45,6 @@ const PASSWORD_REQUIREMENTS: PropertyValidationRequirement[] = [
     message: "At least one digit",
   },
 ];
-
-export interface PropertyValidator {
-  state: PropertyValidationState;
-  validateErrors: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  message?: string;
-}
-
-export interface RequirementsValidator extends PropertyValidator {
-  requirements: Validation[];
-  validateRequirements: (event: React.ChangeEvent<HTMLInputElement>) => void;
-}
 
 export const usePasswordValidation = (): RequirementsValidator => {
   const [validation, updateValidation] = useState<Validation>({

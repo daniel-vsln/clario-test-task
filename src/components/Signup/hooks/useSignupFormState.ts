@@ -1,10 +1,6 @@
 import { useCallback, useState } from "react";
-import {
-  PropertyValidator,
-  RequirementsValidator,
-  useEmailValidation,
-  usePasswordValidation,
-} from "./useValidation";
+import { useEmailValidation, usePasswordValidation } from "./useValidation";
+import { PropertyValidator, RequirementsValidator } from "../../../types";
 
 interface SignupFormState {
   email: string | null;

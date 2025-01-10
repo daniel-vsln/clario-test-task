@@ -1,7 +1,8 @@
 import "./Signup.css";
-import EyeCrossIcon from "../assets/icons/eye-cross.svg?react";
-import EyeIcon from "../assets/icons/eye.svg?react";
-import { PropertyValidationState, useSignupFormState } from "./hooks";
+import EyeCrossIcon from "../../assets/icons/eye-cross.svg?react";
+import EyeIcon from "../../assets/icons/eye.svg?react";
+import { PropertyValidationState } from "../../types";
+import { useSignupFormState } from "./hooks";
 
 const getClassByValidationState = (state: PropertyValidationState): string => {
   return state !== "initial" ? state : "";

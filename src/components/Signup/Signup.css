@@ -4,7 +4,7 @@
 
   --input-padding-left: 20px;
 
-  background: transparent url("/public/stars_bg.png") no-repeat center top;
+  background: transparent url("/stars_bg.png") no-repeat center top;
   background-size: 70% auto;
   padding-top: 10vh;
   width: 100%;
