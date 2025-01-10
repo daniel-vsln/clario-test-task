@@ -1,41 +1,77 @@
 .signup-form {
-  border: 1px solid white;
-  width: 400px;
-  margin: 50px auto;
+  --hints-font-size: 13px;
+  --hints-line-height: 18px;
 
+  --input-padding-left: 20px;
+
+  background: transparent url('/public/stars_bg.png');
+  width: 100%;
+  display: flex;
+  justify-self: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  
   h1 {
-    font-size: 40px;
+    font-size: 1.5em;
+    font-weight: 700;
+    text-align: center;
+    margin: 0 0 20px 0;
   }
 
-  p {
-    text-align: left;
+  input[type="email"],
+  input[type="password"],
+  input[type="text"] {
+    width: 100%;
+    padding: 10px 20px 10px var(--input-padding-left);
+    border-radius: 10px;
+    border: 1px solid transparent;
+    outline: none;
+    font-size: 1em;
+    line-height: 18px;
+    color: var(--text-color);
+
+    &::placeholder {
+      color: var(--text-color-lighter);
+    }
+    &.error {
+      border: 1px solid var(--error-color);
+      color: var(--error-color);
+      background: var(--error-bg-color);
+
+      &::placeholder {
+        color: var(--error-color);
+      }
+    }
+    &.valid {
+      border: 1px solid var(--success-color);
+      color: var(--success-color);
+    }
+    &:focus {
+      border-color: var(--border-color-lighter);
+
+      &::placeholder {
+        color: var(--text-color);
+      }
+    }
   }
 
   .password-container,
   .email-container {
+    margin: 0;
     display: flex;
     flex-direction: column;
     width: 100%;
 
-    input {
-      padding: 10px;
-      border-radius: 10px;
-      height: 28px;
-      border: 1px solid var(--border-color-lighter);
-      outline: none;
+    .email-error {
+      color: var(--error-color);
+      padding-left: var(--input-padding-left);
     }
-    input.error {
-      border: 1px solid var(--error-color);
-    }
-    input.valid {
-      border: 1px solid var(--success-color);
-    }
-
-    /* input:focus {
-      border-color: var(--border-color);
-    } */
 
     .password-requirements {
+      line-height: var(--hints-line-height);
+      padding-left: var(--input-padding-left);
+
       .valid {
         color: var(--success-color);
       }
@@ -43,24 +79,54 @@
         color: var(--error-color);
       }
     }
+
+    .email-error,
+    .password-requirements {
+      font-size: var(--hints-font-size);
+
+      > p {
+        margin: 0;
+
+        &:first-child {
+          margin-top: 8px;
+        }
+      }
+    }
   }
 
   .password-container {
     position: relative;
+
+    input {
+      padding-right: 40px;
+    }
+    .eye-icon {
+      display: block;
+      position: absolute;
+      right: 10px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      padding: 8px;
+    }
   }
 
-  .password-container input {
-    padding-right: 40px;
-  }
-
-  .password-container .eye-icon {
-    display: block;
-    position: absolute;
-    right: 10px;
-    background: none;
+  .signup-button {
+    margin: 20px 0 0 0;
+    background-image: var(--primary-button-bg);
+    width: 240px;
+    height: 48px;
+    border-radius: 30px;
+    color: var(--primary-button-text-color);
     border: none;
-    cursor: pointer;
-    font-size: 18px;
-    padding: 8px;
+    font-size: 1em;
+    font-weight: bold;
   }
+}
+
+@media (min-width: 480px) {
+  .signup-form {
+    max-width: 400px;
+  }  
 }

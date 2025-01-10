@@ -59,7 +59,7 @@ export const Signup = () => {
         </div>
       </div>
 
-      <button onClick={onFormSubmit}>Sign on</button>
+      <button onClick={onFormSubmit} className="signup-button">Sign up</button>
     </section>
   );
 };
