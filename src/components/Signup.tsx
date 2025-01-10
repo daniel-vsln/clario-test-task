@@ -31,7 +31,7 @@ export const Signup = () => {
           name="email"
           onChange={onEmailChange}
           onBlur={validators.email.validateErrors}
-          placeholder="Email"
+          placeholder="Enter your email"
         />
         {validators.email.state === "error" && (
           <div className="email-error">
