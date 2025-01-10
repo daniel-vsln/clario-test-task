@@ -33,9 +33,9 @@ export const Signup = () => {
           onBlur={validators.email.validateErrors}
           placeholder="Email"
         />
-        <div>
-          <p>Invalid email address</p>
-        </div>
+        {validators.email.state === 'error' && <div className="email-error">
+          <p>{validators.email.message}</p>
+        </div>}
       </div>
       <div className="password-container">
         <input
