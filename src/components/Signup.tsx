@@ -1,6 +1,6 @@
 import "./Signup.css";
-import EyeCrossIcon from "../assets/icons/eye-cross.svg";
-import EyeIcon from "../assets/icons/eye.svg";
+import EyeCrossIcon from "../assets/icons/eye-cross.svg?react";
+import EyeIcon from "../assets/icons/eye.svg?react";
 import { PropertyValidationState, useSignupFormState } from "./hooks";
 
 const getClassByValidationState = (state: PropertyValidationState): string => {
@@ -33,9 +33,11 @@ export const Signup = () => {
           onBlur={validators.email.validateErrors}
           placeholder="Email"
         />
-        {validators.email.state === 'error' && <div className="email-error">
-          <p>{validators.email.message}</p>
-        </div>}
+        {validators.email.state === "error" && (
+          <div className="email-error">
+            <p>{validators.email.message}</p>
+          </div>
+        )}
       </div>
       <div className="password-container">
         <input
@@ -49,17 +51,24 @@ export const Signup = () => {
           placeholder="Create your password"
         />
         <i className="eye-icon" onClick={onPasswordVisibilityToggle}>
-          <img src={PasswordVisibilityIcon} />
+          <PasswordVisibilityIcon />
+          {/* <img src={PasswordVisibilityIcon} /> */}
         </i>
         <div className="password-requirements">
           {validators.password.requirements.map((r) => {
             const className = r.state !== "initial" ? r.state : "";
-            return <p key={r.message} className={className}>{r.message}</p>;
+            return (
+              <p key={r.message} className={className}>
+                {r.message}
+              </p>
+            );
           })}
         </div>
       </div>
 
-      <button onClick={onFormSubmit} className="signup-button">Sign up</button>
+      <button onClick={onFormSubmit} className="signup-button">
+        Sign up
+      </button>
     </section>
   );
 };

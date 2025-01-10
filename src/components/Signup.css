@@ -4,7 +4,7 @@
 
   --input-padding-left: 20px;
 
-  background: transparent url('/public/stars_bg.png');
+  /*background: transparent url('/public/stars_bg.png') no-repeat center center;*/
   width: 100%;
   display: flex;
   justify-self: center;
@@ -99,6 +99,25 @@
 
     input {
       padding-right: 40px;
+
+      &.error {
+        & + .eye-icon {
+          svg {
+            &, & > * {
+              fill: var(--error-color);
+            }
+          }
+        }
+      }
+      &.valid {
+        & + .eye-icon {
+          svg {
+            &, & > * {
+              fill: var(--success-color);
+            }
+          }
+        }
+      }
     }
     .eye-icon {
       display: block;
@@ -109,6 +128,12 @@
       cursor: pointer;
       font-size: 18px;
       padding: 8px;
+
+      svg {
+        &, & > * {
+          fill: var(--text-color-lighter);
+        }
+      }  
     }
   }
 
