@@ -12,11 +12,11 @@ export interface PropertyValidationRequirement {
 
 export interface PropertyValidator {
   state: PropertyValidationState;
-  validateErrors: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  validateErrors: (value: string) => void;
   message?: string;
 }
 
 export interface RequirementsValidator extends PropertyValidator {
   requirements: Validation[];
-  validateRequirements: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  validateRequirements: (value: string) => void;
 }

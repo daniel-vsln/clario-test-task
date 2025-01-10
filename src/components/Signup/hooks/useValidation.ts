@@ -15,8 +15,7 @@ export const useEmailValidation = (): PropertyValidator => {
     message: "Invalid email address",
   });
 
-  const validateErrors = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.currentTarget.value;
+  const validateErrors = (value: string) => {
     const isValid = EMAIL_REGEX.test(value);
     updateValidation((prev) => ({
       ...prev,
@@ -55,9 +54,7 @@ export const usePasswordValidation = (): RequirementsValidator => {
   );
 
   const validateRequirements = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      const value = event.currentTarget.value;
-
+    (value: string) => {
       const validations: Validation[] = [];
       PASSWORD_REQUIREMENTS.forEach(({ pattern, message }) => {
         const isValid = pattern.test(value);
@@ -74,9 +71,7 @@ export const usePasswordValidation = (): RequirementsValidator => {
   );
 
   const validateErrors = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      const value = event.currentTarget.value;
-
+    (value: string) => {
       let noErrors = true;
       const validations: Validation[] = [];
 

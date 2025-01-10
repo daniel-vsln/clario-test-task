@@ -16,6 +16,8 @@ interface SignupFormHandlers {
   onPasswordChange: React.ChangeEventHandler<HTMLInputElement>;
   onFormSubmit: React.MouseEventHandler<HTMLButtonElement>;
   onPasswordVisibilityToggle: () => void;
+  onEmailBlur: React.FocusEventHandler<HTMLInputElement>;
+  onPasswordBlur: React.FocusEventHandler<HTMLInputElement>;
 }
 
 interface SignupFormValidators {
@@ -41,10 +43,25 @@ export const useSignupFormState = (): SignupFormState => {
 
   const onPasswordChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      passwordValidator.validateRequirements(event);
-      setPassword(event.currentTarget.value);
+      const value = event.currentTarget.value;
+      passwordValidator.validateRequirements(value);
+      setPassword(value);
     },
-    []
+    [passwordValidator]
+  );
+
+  const onEmailBlur = useCallback(
+    (event: React.FocusEvent<HTMLInputElement>) => {
+      emailValidator.validateErrors(event.target.value);
+    },
+    [emailValidator]
+  );
+
+  const onPasswordBlur = useCallback(
+    (event: React.FocusEvent<HTMLInputElement>) => {
+      passwordValidator.validateErrors(event.target.value);
+    },
+    [passwordValidator]
   );
 
   const onPasswordVisibilityToggle = useCallback(() => {
@@ -52,8 +69,18 @@ export const useSignupFormState = (): SignupFormState => {
   }, []);
 
   const onFormSubmit = useCallback(() => {
-    setIsFormSubmitted(true);
-  }, []);
+    const isEmailValid = emailValidator.state === "valid";
+    const isPasswordValid = passwordValidator.state === "valid";
+
+    if (!isEmailValid) {
+      emailValidator.validateErrors(email ?? "");
+    }
+    if (!isPasswordValid) {
+      passwordValidator.validateErrors(password ?? "");
+    }
+
+    isPasswordValid && isEmailValid && setIsFormSubmitted(true);
+  }, [emailValidator, passwordValidator, email, password]);
 
   return {
     email,
@@ -65,6 +92,8 @@ export const useSignupFormState = (): SignupFormState => {
       onPasswordChange,
       onFormSubmit,
       onPasswordVisibilityToggle,
+      onEmailBlur,
+      onPasswordBlur,
     },
     validators: {
       password: {

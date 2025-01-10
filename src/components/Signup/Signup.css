@@ -6,7 +6,7 @@
 
   background: transparent url("/stars_bg.png") no-repeat center top;
   background-size: 70% auto;
-  padding-top: 10vh;
+  padding-top: 11vh;
   width: 100%;
   min-height: 100vh;
   display: flex;
@@ -37,6 +37,13 @@
     &::placeholder {
       color: var(--text-color-lighter);
     }
+    &:focus {
+      border-color: var(--border-color-lighter);
+
+      &::placeholder {
+        color: var(--text-color);
+      }
+    }
     &.error {
       border: 1px solid var(--error-color);
       color: var(--error-color);
@@ -49,13 +56,6 @@
     &.valid {
       border: 1px solid var(--success-color);
       color: var(--success-color);
-    }
-    &:focus {
-      border-color: var(--border-color-lighter);
-
-      &::placeholder {
-        color: var(--text-color);
-      }
     }
   }
 
@@ -153,6 +153,7 @@
     border: none;
     font-size: 1em;
     font-weight: bold;
+    outline: none;
 
     &:hover {
       cursor: pointer;
@@ -164,4 +165,13 @@
   .signup-form {
     max-width: 400px;
   }
+}
+
+.success-signup {
+  img {
+    border-radius: 10px;
+    width: 340px;
+  }
+  justify-self: center;
+  text-align: center;
 }
